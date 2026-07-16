@@ -1,0 +1,33 @@
+---
+rooms:
+  - name: "銃弾の貫くものは"
+    url: "https://ccfolia.com/rooms/JCCakKWrI"
+  - name: "庭師は何を口ずさむ"
+    url: "https://ccfolia.com/rooms/YblhaPyot"
+  - name: "沼男は誰だ？"
+    url: "https://ccfolia.com/rooms/2WlXitRzh"
+  - name: "火灯し頃の蜘蛛踊り"
+    url: "https://ccfolia.com/rooms/aKebkXwWq"
+  - name: "Good morning all"
+    url: "https://ccfolia.com/rooms/8oIDsEwiA"
+  - name: "永すぎた前奏"
+    url: "https://ccfolia.com/rooms/9abeZeZoX"
+  - name: "カタシロ"
+    url: "https://ccfolia.com/rooms/476PPRAuO"
+  - name: "片鱗【ぴよなす卓】"
+    url: "https://ccfolia.com/rooms/KEjr_i5Lw"
+  - name: "片鱗【ばぶみゆ卓】"
+    url: "https://ccfolia.com/rooms/PAEH7_P5k"
+  - name: "刹夏【ばぶみゆ卓】"
+    url: "https://ccfolia.com/rooms/gFKB-OBAE"
+  - name: "機械仕掛けの街"
+    url: "https://ccfolia.com/rooms/C3Jp1Z84F"
+  - name: "狂気山脈"
+    url: "https://ccfolia.com/rooms/thdL1jsFr"
+  - name: "プル夜【Laboツナ卓】"
+    url: "https://ccfolia.com/rooms/BDeQISwFf"
+  - name: "ハンドカフト【るびきょう】"
+    url: "https://ccfolia.com/rooms/S3MbSDVtK"
+
+
+---

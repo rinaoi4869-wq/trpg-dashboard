@@ -1,9 +1,7 @@
 import { defineCollection, z } from 'astro:content';
-import { glob } from 'astro/loaders'; // ★ AStro v6用の新しい読み込み道具
+import { glob } from 'astro/loaders'; 
 
-// 探索者データの定義
 const characters = defineCollection({
-  // ★ astro:loaders を使って「content/characters」フォルダ内のmdを読み込む設定
   loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/characters" }),
   schema: z.object({
     name: z.string(),
@@ -19,5 +17,19 @@ const characters = defineCollection({
   }),
 });
 
-// 定義したものをAstroに登録
-export const collections = { characters };
+const rooms = defineCollection({
+  loader: glob({ pattern: '**/[^_]*.{md,mdx}', base: "./src/content/rooms" }),
+  schema: z.object({
+    rooms: z.array(
+      z.object({
+        name: z.string(),
+        url: z.string().url(),
+      })
+    ),
+  })
+});
+
+export const collections = { 
+  characters, 
+  rooms 
+};
