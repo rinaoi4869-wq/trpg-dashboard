@@ -1,0 +1,9 @@
+---
+name: "白析環"
+system: "クトゥルフ神話TRPG"
+profession: "やみいしゃ"
+mainColor: "#ffffff"  # メインカラー（背景色にしたい黒やダークカラーなど）
+subColor: "#a597ff"   # サブカラー（目立たせたい赤や青、紫などのイメカラ）
+---
+
+{"kind":"character","data":{"name":"白析　環（実験体ν） (しらせき　たまき)","initiative":12,"externalUrl":"https://iachara.com/view/13689944","iconUrl":"https://image.iaproject.app/c5c3dc2b-931f-4546-be27-67b8cbb8d2b1","commands":"1d100<={SAN} 【正気度ロール】\nCCB<=65 【アイデア】\nCCB<=65 【幸運】\nCCB<=85 【知識】\nCCB<=90 【目星】\nCCB<=80 【聞き耳】\nCCB<=65 【図書館】\nCCB<=24 【回避】\nCCB<=80 【こぶし（パンチ）】\nCCB<=55 【キック】\nCCB<=55 【組み付き】\nCCB<=40 【頭突き】\nCCB<=25 【投擲】\nCCB<=1 【マーシャルアーツ】\nCCB<=20 【拳銃】\nCCB<=15 【サブマシンガン】\nCCB<=30 【ショットガン】\nCCB<=15 【マシンガン】\nCCB<=25 【ライフル】\nCCB<=80 【応急手当】\nCCB<=1 【鍵開け】\nCCB<=15 【隠す】\nCCB<=10 【隠れる】\nCCB<=10 【忍び歩き】\nCCB<=10 【写真術】\nCCB<=41 【精神分析】\nCCB<=10 【追跡】\nCCB<=60 【登攀】\nCCB<=20 【運転】\nCCB<=20 【機械修理】\nCCB<=1 【重機械操作】\nCCB<=5 【乗馬】\nCCB<=45 【水泳】\nCCB<=5 【製作】\nCCB<=1 【操縦】\nCCB<=45 【跳躍】\nCCB<=10 【電気修理】\nCCB<=10 【ナビゲート】\nCCB<=1 【変装】\nCCB<=5 【言いくるめ】\nCCB<=40 【信用】\nCCB<=15 【説得】\nCCB<=5 【値切り】\nCCB<=85 【母国語（日本語）】\nCCB<=85 【医学】\nCCB<=5 【オカルト】\nCCB<=38 【化学】\nCCB<=18 【クトゥルフ神話】\nCCB<=5 【芸術】\nCCB<=10 【経理】\nCCB<=1 【考古学】\nCCB<=1 【コンピューター】\nCCB<=45 【心理学】\nCCB<=1 【人類学】\nCCB<=40 【生物学】\nCCB<=1 【地質学】\nCCB<=1 【電子工学】\nCCB<=1 【天文学】\nCCB<=10 【博物学】\nCCB<=1 【物理学】\nCCB<=5 【法律】\nCCB<=40 【薬学】\nCCB<=20 【歴史】\n1d3+0 【ダメージ判定】\n1d4+0 【ダメージ判定】\n1d6+0 【ダメージ判定】\nCCB<={STR}*5 【STR × 5】\nCCB<={CON}*5 【CON × 5】\nCCB<={POW}*5 【POW × 5】\nCCB<={DEX}*5 【DEX × 5】\nCCB<={APP}*5 【APP × 5】\nCCB<={SIZ}*5 【SIZ × 5】\nCCB<={INT}*5 【INT × 5】\nCCB<={EDU}*5 【EDU × 5】\n","status":[{"label":"HP","value":11,"max":11},{"label":"MP","value":13,"max":13},{"label":"SAN","value":35,"max":35}],"params":[{"label":"STR","value":"12"},{"label":"CON","value":"13"},{"label":"POW","value":"13"},{"label":"DEX","value":"12"},{"label":"APP","value":"11"},{"label":"SIZ","value":"9"},{"label":"INT","value":"13"},{"label":"EDU","value":"17"}]}}

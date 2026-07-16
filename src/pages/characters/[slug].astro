@@ -1,0 +1,145 @@
+---
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const characterEntries = await getCollection('characters');
+  return characterEntries.map((entry: any) => ({
+    params: { slug: entry.id }, 
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: any };
+
+const rawJson = entry.body.trim();
+let ccfoliaData = null;
+
+try {
+  ccfoliaData = JSON.parse(rawJson);
+} catch (e) {
+  console.error("JSONの読み込みに失敗しました:", e);
+}
+
+const character = ccfoliaData?.data;
+
+// ★ Markdownに色指定がない場合の「デフォルト色」を決めておきます
+const mainBg = entry.data?.mainColor || "#121214"; 
+const subAccent = entry.data?.subColor || "#ff4a5a";
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <title>{entry.data.name} - キャラクターシート</title>
+    <style define:vars={{ mainBg, subAccent }}>
+        /* ↑ 「define:vars」を使うことで、
+           AstroのJavaScriptで決めた色（mainBg, subAccent）を
+           以下のCSSの中で「var(--mainBg)」「var(--subAccent)」として自由に呼び出せます！
+        */
+        
+        body { 
+            font-family: sans-serif; 
+            background: var(--mainBg); /* ★背景色にメインカラーを適用！ */
+            color: #e1e1e6; 
+            padding: 40px; 
+            font-family: 'Kosugi Maru', sans-serif;
+            margin: 0; 
+        }
+        .container { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 300px 1fr; gap: 40px; }
+        .aside { text-align: center; }
+        .avatar { width: 100%; border-radius: 12px; box-shadow: 0 8px 16px rgba(0,0,0,0.3); }
+        .main-content { background: #1a1a1e; padding: 30px; border-radius: 12px; }
+        
+        /* 戻るボタンのスタイル（イメカラに自動連動） */
+        .back-link {
+            display: inline-block;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid var(--subAccent);
+            color: var(--subAccent);
+            padding: 10px 20px;
+            border-radius: 6px;
+            text-decoration: none;
+            margin-bottom: 15px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            transition: background 0.2s, color 0.2s;
+            background: transparent;
+        }
+        .back-link:hover {
+            background: var(--subAccent);
+            color: #ffffff;
+        }
+
+        /* タイトルの下線にサブカラー（赤だったところ）を適用 */
+        h1 { margin-top: 0; border-bottom: 2px solid var(--subAccent); padding-bottom: 10px; }
+        
+        /* ステータスグリッド */
+        .status-grid, .params-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin-bottom: 30px; }
+        .params-grid { grid-template-columns: repeat(4, 1fr); }
+        
+        /* 左線の色にサブカラーを適用 */
+        .stat-card { background: #26262b; padding: 15px; border-radius: 8px; text-align: center; border-left: 4px solid var(--subAccent); }
+        .stat-label { font-size: 12px; color: #a8a8b3; margin-bottom: 5px; }
+        .stat-value { font-size: 24px; font-weight: bold; }
+        
+        .commands { background: #0c0c0d; padding: 15px; border-radius: 8px; font-family: monospace; white-space: pre-wrap; font-size: 13px; color: #a8a8b3; height: 250px; overflow-y: scroll; }
+        
+        /* ボタン色にもサブカラーを適用 */
+        .external-link { display: inline-block; width: 100%; box-sizing: border-box; background: var(--subAccent); color: white; padding: 10px 20px; border-radius: 6px; text-decoration: none; margin-top: 20px; font-weight: bold; }
+        .external-link:hover { opacity: 0.8; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="aside">
+            <a href="/characters" class="back-link">← キャラ一覧に戻る</a>
+
+            {character?.iconUrl ? (
+                <img class="avatar" src={character.iconUrl} alt={entry.data.name} />
+            ) : (
+                <div style="background: #000000; height: 300px; border-radius: 12px; display: flex; align-items: center; justify-content: center;">No Image</div>
+            )}
+            {character?.externalUrl && (
+                <a href={character.externalUrl} target="_blank" class="external-link">いあきゃらで見る ↗</a>
+            )}
+        </div>
+
+        <div class="main-content">
+            <h1>{entry.data.name} <span style="font-size: 16px; color: #8d8d99; font-weight: normal;">{entry.data.system}</span></h1>
+            
+            <h3>主要ステータス</h3>
+            <div class="status-grid">
+                {character?.status?.map((st: any) => (
+                    <div class="stat-card">
+                        <div class="stat-label">{st.label}</div>
+                        <div class="stat-value">{st.value} / {st.max}</div>
+                    </div>
+                ))}
+            </div>
+
+            <h3>能力値</h3>
+            <div class="params-grid">
+                {/* ご要望通り、左線（border-left-color）は白（#ffffff）固定にしています！
+                */}
+                {character?.params?.map((param: any) => (
+                    <div class="stat-card" style="border-left-color: #ffffff;">
+                        <div class="stat-label">{param.label}</div>
+                        <div class="stat-value">{param.value}</div>
+                    </div>
+                ))}
+            </div>
+
+            <h3>チャットパレット (技能一覧)</h3>
+            <div class="commands">
+                {character?.commands}
+            </div>
+        </div>
+    </div>
+</body>
+</html>

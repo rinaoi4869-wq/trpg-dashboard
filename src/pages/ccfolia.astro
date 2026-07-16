@@ -1,0 +1,276 @@
+---
+// ココフォリア部屋管理ページ
+---
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ココフォリア部屋管理</title>
+    <style>
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            background: #121214;
+            color: #e1e1e6;
+            margin: 0;
+            padding: 40px 20px;
+        }
+
+        .wrapper {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        /* ポータルに戻るボタン */
+        .back-to-portal {
+            display: inline-block;
+            border: 1px solid #e5e5ea;
+            background: #ffffff;
+            color: #1c1c1e;
+            padding: 8px 16px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+            transition: background 0.2s, border-color 0.2s, transform 0.2s;
+        }
+
+        .back-to-portal:hover {
+            border-color: #ff4a5a;
+            background: #fafdff;
+            transform: translateY(-1px);
+        }
+
+        header {
+            margin-bottom: 40px;
+            border-bottom: 1px solid #29292e;
+            padding-bottom: 20px;
+        }
+
+        h1 {
+            margin: 0 0 10px 0;
+            font-size: 2rem;
+            letter-spacing: 0.05em;
+        }
+
+        /* 登録フォームの白カード */
+        .register-form {
+            background: #ffffff;
+            color: #1c1c1e;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 40px;
+            border: 1px solid #e5e5ea;
+        }
+
+        .form-title {
+            margin: 0 0 15px 0;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        .form-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .form-group input {
+            flex: 1;
+            min-width: 200px;
+            padding: 10px 15px;
+            border-radius: 6px;
+            border: 1px solid #d1d1d6;
+            font-size: 0.95rem;
+        }
+
+        .form-group button {
+            background: #ff4a5a;
+            color: #ffffff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-weight: bold;
+            cursor: pointer;
+            font-size: 0.95rem;
+            transition: opacity 0.2s;
+        }
+
+        .form-group button:hover {
+            opacity: 0.9;
+        }
+
+        /* 部屋リスト */
+        .room-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 20px;
+        }
+
+        .room-card {
+            background: #ffffff;
+            color: #1c1c1e;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e5e5ea;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 120px;
+            position: relative;
+        }
+
+        .room-info h3 {
+            margin: 0 0 8px 0;
+            font-size: 1.15rem;
+            font-weight: bold;
+        }
+
+        .room-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .room-link {
+            display: inline-block;
+            background: #1c1c1e;
+            color: #ffffff;
+            padding: 6px 14px;
+            border-radius: 6px;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .room-link:hover {
+            background: #48484a;
+        }
+
+        /* 削除ボタン */
+        .delete-btn {
+            background: transparent;
+            color: #ff3b30;
+            border: none;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: bold;
+            padding: 5px;
+        }
+        
+        .delete-btn:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <div class="wrapper">
+        <a href="/" class="back-to-portal">← ポータルに戻る</a>
+
+        <header>
+            <h1>ココフォリア部屋管理</h1>
+            <p style="color: #8d8d99; margin: 0;">セッション部屋のリンクを即時登録・保存します</p>
+        </header>
+
+        <section class="register-form">
+            <h2 class="form-title">➕ 新しい部屋を登録する</h2>
+            <div class="form-group">
+                <input type="text" id="roomName" placeholder="部屋の名前（例：狂気山脈など）" required />
+                <input type="url" id="roomUrl" placeholder="ココフォリアのURL（https://ccfolia.com/...）" required />
+                <button id="addBtn">登録する</button>
+            </div>
+        </section>
+
+        <h2>登録済みの部屋一覧</h2>
+        <main class="room-grid" id="roomGrid">
+            </main>
+    </div>
+
+    <script is:inline>
+        const roomNameInput = document.getElementById('roomName');
+        const roomUrlInput = document.getElementById('roomUrl');
+        const addBtn = document.getElementById('addBtn');
+        const roomGrid = document.getElementById('roomGrid');
+
+        // ローカルストレージから部屋データを読み込む
+        let savedRooms = JSON.parse(localStorage.getItem('ccfolia_rooms')) || [];
+
+        // リストを描画する関数
+        function renderRooms() {
+            roomGrid.innerHTML = '';
+            
+            if (savedRooms.length === 0) {
+                roomGrid.innerHTML = '<p style="color: #8d8d99; grid-column: 1/-1; text-align: center;">登録されている部屋がありません。上のフォームから登録してください！</p>';
+                return;
+            }
+
+            savedRooms.forEach((room, index) => {
+                const card = document.createElement('div');
+                card.className = 'room-card';
+                card.innerHTML = `
+                    <div class="room-info">
+                        <h3>🎲 ${escapeHtml(room.name)}</h3>
+                    </div>
+                    <div class="room-actions">
+                        <a href="${room.url}" target="_blank" class="room-link">部屋に入る ↗</a>
+                        <button class="delete-btn" onclick="deleteRoom(${index})">削除</button>
+                    </div>
+                `;
+                roomGrid.appendChild(card);
+            });
+        }
+
+        // 部屋を追加する処理
+        addBtn.addEventListener('click', () => {
+            const name = roomNameInput.value.trim();
+            const url = roomUrlInput.value.trim();
+
+            if (!name || !url) {
+                alert('部屋の名前とURLを入力してください！');
+                return;
+            }
+
+            // データの追加
+            savedRooms.push({ name, url });
+            localStorage.setItem('ccfolia_rooms', JSON.stringify(savedRooms));
+
+            // 入力欄をクリア
+            roomNameInput.value = '';
+            roomUrlInput.value = '';
+
+            // 再描画
+            renderRooms();
+        });
+
+        // 部屋を削除する処理（グローバルに関数を置く）
+        window.deleteRoom = function(index) {
+            if (confirm('この部屋を一覧から削除しますか？')) {
+                savedRooms.splice(index, 1);
+                localStorage.setItem('ccfolia_rooms', JSON.stringify(savedRooms));
+                renderRooms();
+            }
+        };
+
+        // HTMLエスケープ処理（セキュリティ対策）
+        function escapeHtml(str) {
+            return str
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // 初期描画
+        renderRooms();
+    </script>
+</body>
+</html>

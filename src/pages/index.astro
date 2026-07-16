@@ -1,11 +1,131 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+// トップページ（ポータル画面）
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kosugi+Maru&display=swap" rel="stylesheet">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TRPG管理</title>
+    <style>
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            background: #121214;
+            color: #e1e1e6;
+            margin: 0;
+            padding: 60px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80vh;
+        }
+
+        .portal-container {
+            max-width: 900px;
+            width: 100%;
+            text-align: center;
+        }
+
+        header {
+            margin-bottom: 50px;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin: 0 0 10px 0;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            color: #8d8d99;
+            margin: 0;
+            font-size: 1rem;
+        }
+
+        /* メニューのグリッド配置 */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        /* ポータルメニューの白カード */
+        .menu-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 35px 25px;
+            text-decoration: none;
+            color: #1c1c1e;
+            border: 1px solid #e5e5ea;
+            transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+        }
+
+        /* ホバー時の演出（ほんのり赤っぽく光る設定） */
+        .menu-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 30px rgba(255, 74, 90, 0.15);
+            border-color: #ff4a5a;
+        }
+
+        .icon {
+            font-size: 3rem;
+            margin-bottom: 5px;
+        }
+
+        .menu-title {
+            font-size: 1.4rem;
+            font-weight: bold;
+            margin: 0;
+            color: #1c1c1e;
+        }
+
+        .menu-desc {
+            font-size: 0.9rem;
+            color: #636366;
+            margin: 0;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="portal-container">
+        <header>
+            <h1>なし卓のいろいろ管理</h1>
+            <p class="subtitle">探索者シート ＆ ココフォリア部屋</p>
+        </header>
+
+        <main class="menu-grid">
+            <!-- 1. キャラクター一覧へのリンク -->
+            <a href="/characters" class="menu-card">
+                <div class="icon">👥</div>
+                <h2 class="menu-title">キャラクター一覧</h2>
+                <p class="menu-desc">俺のキャラ達🎶</p>
+            </a>
+
+            <!-- 2. キャラクター絞り込みへのリンク -->
+            <a href="/characters/filter" class="menu-card">
+                <div class="icon">🔍</div>
+                <h2 class="menu-title">キャラクター検索</h2>
+                <p class="menu-desc">開発中</p>
+            </a>
+
+            <!-- 3. ココフォリア一覧へのリンク -->
+            <a href="/ccfolia" class="menu-card">
+                <div class="icon">🎲</div>
+                <h2 class="menu-title">ココフォリア一覧</h2>
+                <p class="menu-desc">俺の卓のココフォリア一覧</p>
+            </a>
+        </main>
+    </div>
+</body>
+</html>
