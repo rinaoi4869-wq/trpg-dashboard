@@ -220,7 +220,7 @@ const charactersWithData = allCharacters.map((entry: any) => {
                 const cardAccentShadow = `${cardAccent}20`; 
 
                 return (
-                    <a href={`/characters/${chara.id}`} class="card" style={`--card-accent: ${cardAccent}; --card-accent-shadow: ${cardAccentShadow};`}>
+                    <a href={`/trpg-dashboard/characters/${chara.id}`} class="card" style={`--card-accent: ${cardAccent}; --card-accent-shadow: ${cardAccentShadow};`}>
                         <div class="card-img-wrapper">
                             {chara.ccfolia?.iconUrl ? (
                                 <img src={chara.ccfolia.iconUrl} alt={chara.frontmatter.name} class="card-img" />
