@@ -1,0 +1,8 @@
+---
+name: "阿竹梓文"
+system: "新クトゥルフ神話TRPG"
+profession: "刑事"
+mainColor: "#8a8a8a"  # メインカラー（背景色にしたい黒やダークカラーなど）
+subColor: "#ff4040"   # サブカラー（目立たせたい赤や青、紫などのイメカラ）
+---
+{"kind":"character","data":{"name":"阿竹　梓文 (あちく　しもん)","initiative":65,"externalUrl":"https://iachara.com/view/12374104","iconUrl":"https://image.iaproject.app/55246b5e-e322-43f3-b76c-27ec121eb110","commands":"CC<={SAN} 【正気度ロール】\nCC<=65 【アイデア】\nCC<={幸運} 【幸運】\nCC<=90 【知識】\nCC<=80 【目星】\nCC<=70 【聞き耳】\nCC<=70 【図書館】\nCC<=52 【回避】\nCC<=75 【近接戦闘】\nCC<=20 【投擲】\nCC<=90 【射撃（拳銃）】\nCC<=75 【応急手当】\nCC<=1 【鍵開け】\nCC<=10 【手さばき】\nCC<=20 【隠密】\nCC<=1 【精神分析】\nCC<=10 【追跡】\nCC<=20 【登攀】\nCC<=5 【鑑定】\nCC<=20 【運転】\nCC<=10 【機械修理】\nCC<=1 【重機械操作】\nCC<=5 【乗馬】\nCC<=20 【水泳】\nCC<=5 【芸術/製作】\nCC<=1 【操縦】\nCC<=20 【跳躍】\nCC<=10 【電気修理】\nCC<=10 【ナビゲート】\nCC<=5 【変装】\nCC<=5 【言いくるめ】\nCC<=0 【信用】\nCC<=70 【説得】\nCC<=90 【母国語】\nCC<=15 【威圧】\nCC<=15 【魅惑】\nCC<=1 【言語】\nCC<=1 【医学】\nCC<=5 【オカルト】\nCC<=0 【クトゥルフ神話】\nCC<=5 【経理】\nCC<=1 【考古学】\nCC<=5 【コンピューター】\nCC<=1 【科学】\nCC<=50 【心理学】\nCC<=1 【人類学】\nCC<=1 【電子工学】\nCC<=10 【自然】\nCC<=5 【法律】\nCC<=5 【歴史】\nCC<=10 【サバイバル】\n1d3+0 【ダメージ判定】\n1d4+0 【ダメージ判定】\n1d6+0 【ダメージ判定】\nCC<={STR}　【STR】\nCC<={CON}　【CON】\nCC<={POW}　【POW】\nCC<={DEX}　【DEX】\nCC<={APP}　【APP】\nCC<={SIZ}　【SIZ】\nCC<={INT}　【INT】\nCC<={EDU}　【EDU】\n","status":[{"label":"HP","value":11,"max":11},{"label":"MP","value":13,"max":13},{"label":"SAN","value":70,"max":70},{"label":"幸運","value":90,"max":90}],"params":[{"label":"STR","value":"45"},{"label":"CON","value":"60"},{"label":"POW","value":"65"},{"label":"DEX","value":"65"},{"label":"APP","value":"45"},{"label":"SIZ","value":"50"},{"label":"INT","value":"65"},{"label":"EDU","value":"90"},{"label":"BLD","value":"0"},{"label":"MOV","value":"8"}]}}
