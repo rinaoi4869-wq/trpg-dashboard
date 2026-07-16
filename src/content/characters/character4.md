@@ -1,7 +1,7 @@
 ---
 name: "黒瀬レン"
 system: "クトゥルフ神話TRPG"
-profession: "やみいしゃ"
+profession: "くず"
 mainColor: "#9e9e9e"  # メインカラー（背景色にしたい黒やダークカラーなど）
 subColor: "#131313"   # サブカラー（目立たせたい赤や青、紫などのイメカラ）
 ---

@@ -1,7 +1,7 @@
 ---
 name: "白析環"
 system: "クトゥルフ神話TRPG"
-profession: "やみいしゃ"
+profession: "おいしゃ"
 mainColor: "#ffffff"  # メインカラー（背景色にしたい黒やダークカラーなど）
 subColor: "#a597ff"   # サブカラー（目立たせたい赤や青、紫などのイメカラ）
 ---

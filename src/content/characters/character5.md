@@ -1,7 +1,7 @@
 ---
 name: "白析露"
 system: "クトゥルフ神話TRPG"
-profession: "やみいしゃ"
+profession: "大学生"
 mainColor: "#e6ebff"  # メインカラー（背景色にしたい黒やダークカラーなど）
 subColor: "#ffffff"   # サブカラー（目立たせたい赤や青、紫などのイメカラ）
 ---
